@@ -11,14 +11,14 @@ class UtilsVariable
   {
     $mtime = $this->assetModificationTime($asset);
     $url = $this->assetUrl($asset, ['mtime' => $mtime]);
-    craft()->templates->includeCssFile($url);
+    craft()->templates->includeCssFile(UrlHelper::getUrl($url));
   }
 
   public function includeJs($asset)
   {
     $mtime = $this->assetModificationTime($asset);
     $url = $this->assetUrl($asset, ['mtime' => $mtime]);
-    craft()->templates->includeJsFile($url);
+    craft()->templates->includeJsFile(UrlHelper::getUrl($url));
   }
 
   public function assetModificationTime($asset)
