@@ -16,8 +16,13 @@ A few proxies for buried or inaccessible Craft methods, and useful PHP methods.
 A shortcut for Craft's built-in single-line Markdown parser.
 
 ### `unique`
+Quick access to `array_unique` for filtering out duplicates in an array.
 
 ### `truncate`
+Crude text truncation
+
+### `classNames`
+A clean way of adding a list of classes to an HTML element, from Twig.
 
 ## Variables
 

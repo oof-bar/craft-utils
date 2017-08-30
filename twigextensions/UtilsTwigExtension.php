@@ -13,7 +13,8 @@ class UtilsTwigExtension extends \Twig_Extension
     $methods = [
       'mdline' => 'markdownSingleLine',
       'truncate' => 'truncate',
-      'unique' => 'unique'
+      'unique' => 'unique',
+      'classNames' => 'classNames'
     ];
 
     foreach ($methods as $key => $method) {
@@ -75,5 +76,14 @@ class UtilsTwigExtension extends \Twig_Extension
     } else {
       return $array;
     }
+  }
+
+  /*
+    Convenience method for using an array in an HTML
+  */
+  public function classNames($array)
+  {
+    return join(array_filter($this->unique($array)), ' ');
+
   }
 }
