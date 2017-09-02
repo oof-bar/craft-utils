@@ -14,7 +14,8 @@ class UtilsTwigExtension extends \Twig_Extension
       'mdline' => 'markdownSingleLine',
       'truncate' => 'truncate',
       'unique' => 'unique',
-      'classNames' => 'classNames'
+      'classNames' => 'classNames',
+      'toList' => 'toList'
     ];
 
     foreach ($methods as $key => $method) {
@@ -84,6 +85,38 @@ class UtilsTwigExtension extends \Twig_Extension
   public function classNames($array)
   {
     return join(array_filter($this->unique($array)), ' ');
+  }
+
+  /*
+    Converts an array-like object into a delimited list of the provided property.
+  */
+  public function toList($array, $prop = null, $separator = ', ', $separatorLast = null)
+  {
+    if (is_null($prop)) {
+      // If the passed argument isn't array-like, this may not be very predictable:
+      $segments = (array)$array;
+    } else {
+      $segments = [];
+
+      foreach ($array as $item) {
+        if (is_object($item)) {
+          // Access as object property:
+          $segments[] = $item->$prop;
+        } elseif (is_array($item)) {
+          // Access as associative array:
+          $segments[] = $item[$prop];
+        } else {
+          // Just attempt string coercion:
+          $segments[] = (string)$item;
+        }
+      }
+    }
+
+    if ($separatorLast) {
+      return join(array_slice($segments, 0, -1), $separator) . $separatorLast . end($segments);
+    } else {
+      return join($segments, $separator);
+    }
 
   }
 }
