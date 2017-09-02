@@ -18,11 +18,14 @@ A shortcut for Craft's built-in single-line Markdown parser.
 ### `unique`
 Quick access to `array_unique` for filtering out duplicates in an array.
 
-### `truncate`
-Crude text truncation
+### `truncate($limit = 160)`
+Crude text truncation, based on the provided character limit . If a sentence is cut off, an ellipses is added. Words are never broken.
 
 ### `classNames`
 A clean way of adding a list of classes to an HTML element, from Twig.
+
+### `toList($prop = null, $separator = ', ', $separatorLast = null)`
+Creates a delimited list from the provided array. Accepts a nested property to pull from the constituent objects or arrays.
 
 ## Variables
 
