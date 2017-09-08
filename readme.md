@@ -10,22 +10,38 @@ One stylesheet exists, currently with a single rule. We disable the site's name 
 
 ## Twig Extensions
 
+### Filters
 A few proxies for buried or inaccessible Craft methods, and useful PHP methods.
 
-### `mdline`
+#### `mdline`
 A shortcut for Craft's built-in single-line Markdown parser.
 
-### `unique`
+#### `unique`
 Quick access to `array_unique` for filtering out duplicates in an array.
 
-### `truncate($limit = 160)`
+#### `truncate($limit = 160)`
 Crude text truncation, based on the provided character limit . If a sentence is cut off, an ellipses is added. Words are never broken.
 
-### `classNames`
+#### `classNames`
 A clean way of adding a list of classes to an HTML element, from Twig.
 
-### `toList($prop = null, $separator = ', ', $separatorLast = null)`
+#### `toList($prop = null, $separator = ', ', $separatorLast = null)`
 Creates a delimited list from the provided array. Accepts a nested property to pull from the constituent objects or arrays.
+
+### Tests
+
+#### `sequentialArray`
+Unfortunately, PHP makes no fundamental distinction between associative and sequential arrays. This attempts to determine if an array is associative or not, by checking whether a new array of only the original's values is identical…
+
+```twig
+{% if ['A', 'B', 'C'] is sequentialArray %}
+  Yep!
+{% endif %}
+
+{% if { one: 'Do', two: 'Re', three: 'Mi' } is sequentialArray %}
+  Nope!
+{% endif %}
+```
 
 ## Variables
 

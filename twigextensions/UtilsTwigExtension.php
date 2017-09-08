@@ -25,6 +25,16 @@ class UtilsTwigExtension extends \Twig_Extension
     return $filters;
   }
 
+  public function getTests()
+  {
+    return [
+      new \Twig_SimpleTest('sequentialArray', function ($value) {
+        // If the array's values make up an object identical to the original array, it's probably sequential.
+        return is_array($value) && array_values($value) === $value;
+      })
+    ];
+  }
+
   /*
    * Twig proxy for Craft's built-in single-line markdown parsing function
    */
