@@ -15,7 +15,8 @@ class UtilsTwigExtension extends \Twig_Extension
       'truncate' => 'truncate',
       'unique' => 'unique',
       'classNames' => 'classNames',
-      'toList' => 'toList'
+      'toList' => 'toList',
+      'unescape' => 'unescape'
     ];
 
     foreach ($methods as $key => $method) {
@@ -127,6 +128,13 @@ class UtilsTwigExtension extends \Twig_Extension
     } else {
       return join($segments, $separator);
     }
+  }
 
+  /*
+   * Unescape HTML with encoded entities
+   */
+  public function unescape($html)
+  {
+    return html_entity_decode($html);
   }
 }

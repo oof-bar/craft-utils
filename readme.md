@@ -28,6 +28,9 @@ A clean way of adding a list of classes to an HTML element, from Twig.
 #### `toList($prop = null, $separator = ', ', $separatorLast = null)`
 Creates a delimited list from the provided array. Accepts a nested property to pull from the constituent objects or arrays.
 
+#### `unescape`
+Unescapes text with encoded HTML entities. Useful in combination with Twig's built-in `raw` filter to output HTML from a trusted third party's API that is double-escaped in a JSON response.
+
 ### Tests
 
 #### `sequentialArray`
