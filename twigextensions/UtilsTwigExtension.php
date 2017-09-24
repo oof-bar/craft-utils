@@ -16,6 +16,7 @@ class UtilsTwigExtension extends \Twig_Extension
       'unique' => 'unique',
       'classNames' => 'classNames',
       'toList' => 'toList',
+      'pluck' => 'pluck',
       'unescape' => 'unescape'
     ];
 
@@ -128,6 +129,27 @@ class UtilsTwigExtension extends \Twig_Extension
     } else {
       return join($segments, $separator);
     }
+  }
+
+  /*
+   * Pluck an attribute off an array of objects
+   */
+  public function pluck($list, $key)
+  {
+    return array_map(function ($el) use ($key) {
+      if (is_array($el))
+      {
+        return isset($el[$key]) ? $el[$key] : null;
+      }
+      elseif (is_object($el))
+      {
+        return isset($el->$key) ? $el->$key : null;
+      }
+      else
+      {
+        return null;
+      }
+    }, is_a($list, 'Craft\ElementCriteriaModel') ? $list->find() : (array)$list);
   }
 
   /*
