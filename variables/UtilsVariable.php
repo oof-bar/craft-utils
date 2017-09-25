@@ -51,4 +51,18 @@ class UtilsVariable
     $file = $this->releasePath() . 'public/' . $asset;
     return IOHelper::getFileContents($file);
   }
+
+  public function getDataLibrary($name)
+  {
+    $path = craft()->resources->getResourcePath("utils/json/$name.json");
+
+    if ($path)
+    {
+      return json_decode(IOHelper::getFileContents($path));
+    }
+    else
+    {
+      return false;
+    }
+  }
 }
