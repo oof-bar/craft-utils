@@ -1,0 +1,7 @@
+<div class="select">
+  <select class="select" name="{{ name }}">
+    {% for country in countries %}
+      <option value="{{ country.abbreviation }}" {{- country.abbreviation == value ? ' selected' : null }}>{{ country.name }}</option>
+    {% endfor %}
+  </select>
+</div>

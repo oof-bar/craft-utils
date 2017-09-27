@@ -52,17 +52,8 @@ class UtilsVariable
     return IOHelper::getFileContents($file);
   }
 
-  public function getDataLibrary($name)
+  public function getDataGroup($dataGroupName)
   {
-    $path = craft()->resources->getResourcePath("utils/json/$name.json");
-
-    if ($path)
-    {
-      return json_decode(IOHelper::getFileContents($path));
-    }
-    else
-    {
-      return false;
-    }
+    return craft()->utils->getDataGroup($dataGroupName);
   }
 }
