@@ -17,7 +17,8 @@ class UtilsTwigExtension extends \Twig_Extension
       'classNames' => 'classNames',
       'toList' => 'toList',
       'pluck' => 'pluck',
-      'unescape' => 'unescape'
+      'unescape' => 'unescape',
+      'intoGroups' => 'intoGroups'
     ];
 
     foreach ($methods as $key => $method) {
@@ -158,5 +159,27 @@ class UtilsTwigExtension extends \Twig_Extension
   public function unescape($html)
   {
     return html_entity_decode($html);
+  }
+
+  /*
+   * Split an array into $n groups
+   */
+  public function intoGroups($array, $n)
+  {
+    # Prep $n for division and use as array accessor/offset:
+    $n = (int)$n;
+
+    # Make a single group and bail, if $n is invalid:
+    if (!$n > 0) return [$array];
+
+    $groups = [];
+    $groupSize = round(count($array) / $n);
+
+    # For as many groups as were requested, take chunks of $groupSize from the original array and add them to $groups:
+    for ($g = 0; $g < $n; $g++) {
+      $groups[$g] = array_slice($array, $g * $groupSize, $groupSize);
+    }
+
+    return $groups;
   }
 }

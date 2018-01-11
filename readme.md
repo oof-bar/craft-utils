@@ -38,6 +38,9 @@ Pluck a property from an array of arrays or objects. Subject to failure if you h
 #### `unescape`
 Unescapes text with encoded HTML entities. Useful in combination with Twig's built-in `raw` filter to output HTML from a trusted third party's API that is double-escaped in a JSON response.
 
+#### `intoGroups($n)`
+Takes an array and splits it into `$n` sub-arrays. For example, `[1, 2, 3, 4, 5, 6]` split `intoGroups(2)` would produce an object like `[[1, 2, 3], [4, 5, 6]]`. This is useful for balancing items into multiple columns.
+
 ### Tests
 
 #### `sequentialArray`
