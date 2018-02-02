@@ -29,7 +29,7 @@ class UtilsVariable
 
   public function assetUrl($asset, $params = [])
   {
-    return UrlHelper::getUrlWithParams($asset, $params);
+    return UrlHelper::getSiteUrl($asset, $params);
   }
 
   public function assetPath(AssetFileModel $asset)
