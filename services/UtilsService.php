@@ -1,4 +1,4 @@
-<? namespace Craft;
+<?php namespace Craft;
 
 class UtilsService extends BaseApplicationComponent
 {
